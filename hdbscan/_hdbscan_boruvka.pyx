@@ -70,6 +70,8 @@ cimport dist_metrics as dist_metrics
 
 from sklearn.externals.joblib import Parallel, delayed
 
+cimport cython
+
 cdef np.double_t INF = np.inf
 
 
@@ -89,7 +91,7 @@ cdef inline np.double_t balltree_min_dist_dual(
     np.double_t radius2,
     np.intp_t node1,
     np.intp_t node2,
-    np.double_t[:, ::1] centroid_dist) nogil except -1:
+    cython.floating[:, ::1] centroid_dist) nogil except -1:
 
     cdef np.double_t dist_pt = centroid_dist[node1, node2]
     return max(0, (dist_pt - radius1 - radius2))
@@ -101,7 +103,7 @@ cdef inline np.double_t kdtree_min_dist_dual(
     dist_metrics.DistanceMetric metric,
     np.intp_t node1,
     np.intp_t node2,
-    np.double_t[:, :, ::1] node_bounds,
+    cython.floating[:, :, ::1] node_bounds,
     np.intp_t num_features) except -1:
 
     cdef np.double_t d, d1, d2, rdist = 0.0
@@ -138,7 +140,7 @@ cdef inline np.double_t kdtree_min_rdist_dual(
     dist_metrics.DistanceMetric metric,
     np.intp_t node1,
     np.intp_t node2,
-    np.double_t[:, :, ::1] node_bounds,
+    cython.floating[:, :, ::1] node_bounds,
     np.intp_t num_features) nogil except -1:
 
     cdef np.double_t d, d1, d2, rdist = 0.0

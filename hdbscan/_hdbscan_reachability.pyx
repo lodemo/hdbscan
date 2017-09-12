@@ -8,6 +8,8 @@
 import numpy as np
 cimport numpy as np
 
+cimport cython
+
 from scipy.spatial.distance import pdist, squareform
 from scipy.sparse import lil_matrix as sparse_matrix
 from sklearn.neighbors import KDTree, BallTree
@@ -136,8 +138,8 @@ def balltree_mutual_reachability(X, distance_matrix, metric, p=2, min_points=5,
 
 
 cdef np.ndarray[np.double_t, ndim=1] mutual_reachability_from_pdist(
-        np.ndarray[np.double_t, ndim=1] core_distances,
-        np.ndarray[np.double_t, ndim=1] dists, np.intp_t dim):
+        np.ndarray[cython.floating, ndim=1] core_distances,
+        np.ndarray[cython.floating, ndim=1] dists, np.intp_t dim):
 
     cdef np.intp_t i
     cdef np.intp_t j

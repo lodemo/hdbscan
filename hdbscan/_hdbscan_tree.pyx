@@ -8,10 +8,12 @@
 import numpy as np
 cimport numpy as np
 
+cimport cython
+
 cdef np.double_t INFTY = np.inf
 
 
-cdef list bfs_from_hierarchy(np.ndarray[np.double_t, ndim=2] hierarchy,
+cdef list bfs_from_hierarchy(np.ndarray[cython.floating, ndim=2] hierarchy,
                              np.intp_t bfs_root):
     """
     Perform a breadth first search on a tree in scipy hclust format.
@@ -40,7 +42,7 @@ cdef list bfs_from_hierarchy(np.ndarray[np.double_t, ndim=2] hierarchy,
     return result
 
 
-cpdef np.ndarray condense_tree(np.ndarray[np.double_t, ndim=2] hierarchy,
+cpdef np.ndarray condense_tree(np.ndarray[cython.floating, ndim=2] hierarchy,
                                np.intp_t min_cluster_size=10):
     """Condense a tree according to a minimum cluster size. This is akin
     to the runt pruning procedure of Stuetzle. The result is a much simpler

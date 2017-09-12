@@ -7,7 +7,7 @@ cimport cython
 cimport numpy as np
 from libc.math cimport fabs, sqrt, exp, cos, pow
 
-ctypedef np.double_t DTYPE_t
+ctypedef cython.floating DTYPE_t
 ctypedef np.intp_t ITYPE_t
 
 cdef enum:

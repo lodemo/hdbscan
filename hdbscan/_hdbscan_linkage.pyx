@@ -7,13 +7,15 @@
 import numpy as np
 cimport numpy as np
 
+cimport cython
+
 from libc.float cimport DBL_MAX
 
 from dist_metrics cimport DistanceMetric
 
 
 cpdef np.ndarray[np.double_t, ndim=2] mst_linkage_core(
-                               np.ndarray[np.double_t,
+                               np.ndarray[cython.floating,
                                           ndim=2] distance_matrix):
 
     cdef np.ndarray[np.intp_t, ndim=1] node_labels
@@ -53,8 +55,8 @@ cpdef np.ndarray[np.double_t, ndim=2] mst_linkage_core(
 
 
 cpdef np.ndarray[np.double_t, ndim=2] mst_linkage_core_vector(
-        np.ndarray[np.double_t, ndim=2, mode='c'] raw_data,
-        np.ndarray[np.double_t, ndim=1, mode='c'] core_distances,
+        np.ndarray[cython.floating, ndim=2, mode='c'] raw_data,
+        np.ndarray[cython.floating, ndim=1, mode='c'] core_distances,
         DistanceMetric dist_metric,
         np.double_t alpha=1.0):
 
@@ -194,7 +196,7 @@ cdef class UnionFind (object):
         return n
 
 
-cpdef np.ndarray[np.double_t, ndim=2] label(np.ndarray[np.double_t, ndim=2] L):
+cpdef np.ndarray[np.double_t, ndim=2] label(np.ndarray[cython.floating, ndim=2] L):
 
     cdef np.ndarray[np.double_t, ndim=2] result_arr
     cdef np.double_t[:, ::1] result
