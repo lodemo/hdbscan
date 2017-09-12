@@ -137,7 +137,7 @@ def balltree_mutual_reachability(X, distance_matrix, metric, p=2, min_points=5,
     return result
 
 
-cdef np.ndarray[cython.floating, ndim=1] mutual_reachability_from_pdist(
+cdef np.ndarray[np.double_t, ndim=1] mutual_reachability_from_pdist(
         np.ndarray[cython.floating, ndim=1] core_distances,
         np.ndarray[cython.floating, ndim=1] dists, np.intp_t dim):
 

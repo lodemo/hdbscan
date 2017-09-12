@@ -86,7 +86,7 @@ cdef struct NodeData_t:
 
 # Define a function giving the minimum distance between two
 # nodes of a ball tree
-cdef inline cython.floating balltree_min_dist_dual(
+cdef inline np.double_t balltree_min_dist_dual(
     np.double_t radius1,
     np.double_t radius2,
     np.intp_t node1,
@@ -99,7 +99,7 @@ cdef inline cython.floating balltree_min_dist_dual(
 
 # Define a function giving the minimum distance between two
 # nodes of a kd-tree
-cdef inline cython.floating kdtree_min_dist_dual(
+cdef inline np.double_t kdtree_min_dist_dual(
     dist_metrics.DistanceMetric metric,
     np.intp_t node1,
     np.intp_t node2,
@@ -136,7 +136,7 @@ cdef inline cython.floating kdtree_min_dist_dual(
 # As above, but this time we use the rdist as per the kdtree
 # implementation. This allows us to release the GIL over
 # larger sections of code
-cdef inline cython.floating kdtree_min_rdist_dual(
+cdef inline np.double_t kdtree_min_rdist_dual(
     dist_metrics.DistanceMetric metric,
     np.intp_t node1,
     np.intp_t node2,

@@ -3,13 +3,14 @@
 #cython: wraparound=False
 #cython: cdivision=True
 
+cimport cython
 
+import numpy as np
 cimport numpy as np
 from libc.math cimport fabs, sqrt, exp, cos, pow
 
-cimport cython
 
-ctypedef cython.floating DTYPE_t
+ctypedef cython.floating DTYPE_t # WARNING: should match DTYPE in dist_metrics.pyx
 ctypedef np.intp_t ITYPE_t
 
 cdef enum:
@@ -21,9 +22,9 @@ ctypedef fused DITYPE_t:
     ITYPE_t
     DTYPE_t
 
-ITYPE = np.intp
 
-DTYPE = np.double
+DTYPE = cython.floating
+ITYPE = np.intp
 
 ######################################################################
 # Inline distance functions
