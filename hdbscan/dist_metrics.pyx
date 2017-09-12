@@ -10,11 +10,14 @@
 
 import numpy as np
 cimport numpy as np
+
+cimport cython
+
 np.import_array()  # required in order to use C-API
 
 from libc.math cimport fabs, sqrt, exp, cos, pow, log, acos, M_PI
 
-DTYPE = np.double
+DTYPE = cython.floating
 ITYPE = np.intp
 
 

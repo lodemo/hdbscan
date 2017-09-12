@@ -519,7 +519,7 @@ cdef get_probabilities(np.ndarray tree, dict cluster_map, np.ndarray labels):
     return result
 
 
-cpdef np.ndarray[np.double_t, ndim=1] outlier_scores(np.ndarray tree):
+cpdef np.ndarray[cython.floating, ndim=1] outlier_scores(np.ndarray tree):
     """Generate GLOSH outlier scores from a condensed tree.
     
     Parameters

@@ -14,7 +14,7 @@ from libc.float cimport DBL_MAX
 from dist_metrics cimport DistanceMetric
 
 
-cpdef np.ndarray[np.double_t, ndim=2] mst_linkage_core(
+cpdef np.ndarray[cython.floating, ndim=2] mst_linkage_core(
                                np.ndarray[cython.floating,
                                           ndim=2] distance_matrix):
 
@@ -54,7 +54,7 @@ cpdef np.ndarray[np.double_t, ndim=2] mst_linkage_core(
     return result
 
 
-cpdef np.ndarray[np.double_t, ndim=2] mst_linkage_core_vector(
+cpdef np.ndarray[cython.floating, ndim=2] mst_linkage_core_vector(
         np.ndarray[cython.floating, ndim=2, mode='c'] raw_data,
         np.ndarray[cython.floating, ndim=1, mode='c'] core_distances,
         DistanceMetric dist_metric,
@@ -196,7 +196,7 @@ cdef class UnionFind (object):
         return n
 
 
-cpdef np.ndarray[np.double_t, ndim=2] label(np.ndarray[cython.floating, ndim=2] L):
+cpdef np.ndarray[cython.floating, ndim=2] label(np.ndarray[cython.floating, ndim=2] L):
 
     cdef np.ndarray[np.double_t, ndim=2] result_arr
     cdef np.double_t[:, ::1] result
@@ -228,7 +228,7 @@ cpdef np.ndarray[np.double_t, ndim=2] label(np.ndarray[cython.floating, ndim=2] 
     return result_arr
 
 
-cpdef np.ndarray[np.double_t, ndim=2] single_linkage(distance_matrix):
+cpdef np.ndarray[cython.floating, ndim=2] single_linkage(distance_matrix):
 
     cdef np.ndarray[np.double_t, ndim=2] hierarchy
     cdef np.ndarray[np.double_t, ndim=2] for_labelling

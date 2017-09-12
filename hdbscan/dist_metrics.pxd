@@ -3,9 +3,11 @@
 #cython: wraparound=False
 #cython: cdivision=True
 
-cimport cython
+
 cimport numpy as np
 from libc.math cimport fabs, sqrt, exp, cos, pow
+
+cimport cython
 
 ctypedef cython.floating DTYPE_t
 ctypedef np.intp_t ITYPE_t
